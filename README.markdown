@@ -13,10 +13,16 @@ The goal of this project is:
  - Fix bugs
  - Refactor as needed
  - Add proper docblocks to all functions (and there's a lot of them)
- - Maintain compatibility with existing scripts (i.e. do not rename/remove any public functions)
+ - Attempt to maintain compatibility with existing scripts (i.e. do not rename/remove any public functions)
  - Rename some functions but keep references to existing (it seems the original author's native language was not english)
  
 ## Status
 
-Currently assume this version is broken and buggy
+Currently assume this version is broken and buggy.
+
+## Issues
+
+The biggest issue to overcome is there does not seem to be a consistent use of camel casing.  Some functions start in caps
+while others do not.  The project would like to maintain complete backwards compatibility, but that may be sacrificed for
+consistency in the API.
  
