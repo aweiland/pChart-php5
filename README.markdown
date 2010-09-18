@@ -16,6 +16,7 @@ The goal of this project is:
  - Maintain compatibility with existing scripts (i.e. do not rename/remove any public functions)
  - Rename some functions but keep references to existing (it seems the original author's native language was not english)
  
- ## Status
- Currently assume this version is broken and buggy
+## Status
+
+Currently assume this version is broken and buggy
  
