@@ -9,6 +9,7 @@ with PHP 5 will soon be lost because of new language features
 ## Goals
 
 The goal of this project is:
+
 * Update pChart to use PHP 5 object-oriented language features
 * Fix bugs
 * Refactor as needed
