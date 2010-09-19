@@ -1,96 +1,96 @@
 <?php
-/*
-     pChart - a PHP class to build charts!
-     Copyright (C) 2008 Jean-Damien POGOLOTTI
-     Version  1.27d last updated on 09/30/08
-
-     http://pchart.sourceforge.net
-
-     This program is free software: you can redistribute it and/or modify
-     it under the terms of the GNU General Public License as published by
-     the Free Software Foundation, either version 1,2,3 of the License, or
-     (at your option) any later version.
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU General Public License for more details.
-
-     You should have received a copy of the GNU General Public License
-     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-     Class initialisation :
-      pChart($XSize,$YSize)
-     Draw methods :
-      drawBackground($R,$G,$B)
-      drawRectangle($X1,$Y1,$X2,$Y2,$R,$G,$B)
-      drawFilledRectangle($X1,$Y1,$X2,$Y2,$R,$G,$B,$DrawBorder=TRUE,$Alpha=100)
-      drawRoundedRectangle($X1,$Y1,$X2,$Y2,$Radius,$R,$G,$B)
-      drawFilledRoundedRectangle($X1,$Y1,$X2,$Y2,$Radius,$R,$G,$B)
-      drawCircle($Xc,$Yc,$Height,$R,$G,$B,$Width=0)
-      drawFilledCircle($Xc,$Yc,$Height,$R,$G,$B,$Width=0)
-      drawEllipse($Xc,$Yc,$Height,$Width,$R,$G,$B)
-      drawFilledEllipse($Xc,$Yc,$Height,$Width,$R,$G,$B)
-      drawLine($X1,$Y1,$X2,$Y2,$R,$G,$B,$GraphFunction=FALSE)
-      drawDottedLine($X1,$Y1,$X2,$Y2,$DotSize,$R,$G,$B)
-      drawAlphaPixel($X,$Y,$Alpha,$R,$G,$B)
-      drawFromPNG($FileName,$X,$Y,$Alpha=100)
-      drawFromGIF($FileName,$X,$Y,$Alpha=100)
-      drawFromJPG($FileName,$X,$Y,$Alpha=100)
-     Graph setup methods :
-      addBorder($Width=3,$R=0,$G=0,$B=0)
-      clearScale()
-      clearShadow()
-      createColorGradientPalette($R1,$G1,$B1,$R2,$G2,$B2,$Shades)
-      drawGraphArea($R,$G,$B,$Stripe=FALSE)
-      drawScale($Data,$DataDescription,$ScaleMode,$R,$G,$B,$DrawTicks=TRUE,$Angle=0,$Decimals=1,$WithMargin=FALSE,$SkipLabels=1,$RightScale=FALSE)
-      drawRightScale($Data,$DataDescription,$ScaleMode,$R,$G,$B,$DrawTicks=TRUE,$Angle=0,$Decimals=1,$WithMargin=FALSE,$SkipLabels=1)
-      drawXYScale($Data,$DataDescription,$YSerieName,$XSerieName,$R,$G,$B,$WithMargin=0,$Angle=0,$Decimals=1)
-      drawGrid($LineWidth,$Mosaic=TRUE,$R=220,$G=220,$B=220,$Alpha=100)
-      drawLegend($XPos,$YPos,$DataDescription,$R,$G,$B,$Rs=-1,$Gs=-1,$Bs=-1,$Rt=0,$Gt=0,$Bt=0,$Border=FALSE)
-      drawPieLegend($XPos,$YPos,$Data,$DataDescription,$R,$G,$B)
-      drawTitle($XPos,$YPos,$Value,$R,$G,$B,$XPos2=-1,$YPos2=-1,$Shadow=FALSE)
-      drawTreshold($Value,$R,$G,$B,$ShowLabel=FALSE,$ShowOnRight=FALSE,$TickWidth=4,$FreeText=NULL)
-      drawArea($Data,$Serie1,$Serie2,$R,$G,$B,$Alpha = 50)
-      drawRadarAxis($Data,$DataDescription,$Mosaic=TRUE,$BorderOffset=10,$A_R=60,$A_G=60,$A_B=60,$S_R=200,$S_G=200,$S_B=200,$MaxValue=-1)
-      drawGraphAreaGradient($R,$G,$B,$Decay,$Target=TARGET_GRAPHAREA)
-      drawTextBox($X1,$Y1,$X2,$Y2,$Text,$Angle=0,$R=255,$G=255,$B=255,$Align=ALIGN_LEFT,$Shadow=TRUE,$BgR=-1,$BgG=-1,$BgB=-1,$Alpha=100)
-      getLegendBoxSize($DataDescription)
-      loadColorPalette($FileName,$Delimiter=",")
-      reportWarnings($Interface="CLI")
-      setGraphArea($X1,$Y1,$X2,$Y2)
-      setLabel($Data,$DataDescription,$SerieName,$ValueName,$Caption,$R=210,$G=210,$B=210)
-      setColorPalette($ID,$R,$G,$B)
-      setCurrency($Currency)
-      setDateFormat($Format)
-      setFontProperties($FontName,$FontSize)
-      setLineStyle($Width=1,$DotSize=0)
-      setFixedScale($VMin,$VMax,$Divisions=5,$VXMin=0,$VXMin=0,$XDivisions=5)
-      setShadowProperties($XDistance=1,$YDistance=1,$R=60,$G=60,$B=60,$Alpha)
-      writeValues($Data,$DataDescription,$Series)
-    Graphs methods :
-      drawPlotGraph($Data,$DataDescription,$BigRadius=5,$SmallRadius=2,$R2=-1,$G2=-1,$B2=-1,$Shadow=FALSE)
-      drawXYPlotGraph($Data,$DataDescription,$YSerieName,$XSerieName,$PaletteID=0,$BigRadius=5,$SmallRadius=2,$R2=-1,$G2=-1,$B2=-1)
-      drawLineGraph($Data,$DataDescription,$SerieName="")
-      drawXYGraph($Data,$DataDescription,$YSerieName,$XSerieName,$PaletteID=0)
-      drawFilledLineGraph($Data,$DataDescription,$Alpha=100,$AroundZero=FALSE)
-      drawCubicCurve($Data,$DataDescription,$Accuracy=.1,$SerieName="")
-      drawFilledCubicCurve($Data,$DataDescription,$Accuracy=.1,$Alpha=100,$AroundZero=FALSE)
-      drawOverlayBarGraph($Data,$DataDescription,$Alpha=50)
-      drawBarGraph($Data,$DataDescription,$Shadow=FALSE)
-      drawStackedBarGraph($Data,$DataDescription,$Alpha=50,$Contiguous=FALSE)
-      drawLimitsGraph($Data,$DataDescription,$R=0,$G=0,$B=0)
-      drawRadar($Data,$DataDescription,$BorderOffset=10,$MaxValue=-1)
-      drawFilledRadar($Data,$DataDescription,$Alpha=50,$BorderOffset=10,$MaxValue=-1)
-      drawBasicPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$R=255,$G=255,$B=255,$Decimals=0)
-      drawFlatPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$SpliceDistance=0,$Decimals = 0)
-      drawFlatPieGraphWithShadow($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$SpliceDistance=0,$Decimals = 0)
-      drawPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$EnhanceColors=TRUE,$Skew=60,$SpliceHeight=20,$SpliceDistance=0,$Decimals=0)
-     Other methods :
-      setImageMap($Mode=TRUE,$GraphID="MyGraph")
-      getImageMap($MapName,$Flush=TRUE)
-      Render($FileName)
-      Stroke()
+/**
+ *    pChart - a PHP class to build charts!
+ *    Copyright (C) 2008 Jean-Damien POGOLOTTI
+ *    Version  1.27d last updated on 09/30/08
+ *
+ *    http://pchart.sourceforge.net
+ *
+ *    This program is free software: you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation, either version 1,2,3 of the License, or
+ *    (at your option) any later version.
+ *
+ *    This program is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *    GNU General Public License for more details.
+ *
+ *    You should have received a copy of the GNU General Public License
+ *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *    Class initialisation :
+ *     pChart($XSize,$YSize)
+ *    Draw methods :
+ *     drawBackground($R,$G,$B)
+ *     drawRectangle($X1,$Y1,$X2,$Y2,$R,$G,$B)
+ *     drawFilledRectangle($X1,$Y1,$X2,$Y2,$R,$G,$B,$DrawBorder=TRUE,$Alpha=100)
+ *     drawRoundedRectangle($X1,$Y1,$X2,$Y2,$Radius,$R,$G,$B)
+ *     drawFilledRoundedRectangle($X1,$Y1,$X2,$Y2,$Radius,$R,$G,$B)
+ *     drawCircle($Xc,$Yc,$Height,$R,$G,$B,$Width=0)
+ *     drawFilledCircle($Xc,$Yc,$Height,$R,$G,$B,$Width=0)
+ *     drawEllipse($Xc,$Yc,$Height,$Width,$R,$G,$B)
+ *     drawFilledEllipse($Xc,$Yc,$Height,$Width,$R,$G,$B)
+ *     drawLine($X1,$Y1,$X2,$Y2,$R,$G,$B,$GraphFunction=FALSE)
+ *     drawDottedLine($X1,$Y1,$X2,$Y2,$DotSize,$R,$G,$B)
+ *     drawAlphaPixel($X,$Y,$Alpha,$R,$G,$B)
+ *     drawFromPNG($FileName,$X,$Y,$Alpha=100)
+ *     drawFromGIF($FileName,$X,$Y,$Alpha=100)
+ *     drawFromJPG($FileName,$X,$Y,$Alpha=100)
+ *    Graph setup methods :
+ *     addBorder($Width=3,$R=0,$G=0,$B=0)
+ *     clearScale()
+ *     clearShadow()
+ *     createColorGradientPalette($R1,$G1,$B1,$R2,$G2,$B2,$Shades)
+ *     drawGraphArea($R,$G,$B,$Stripe=FALSE)
+ *     drawScale($Data,$DataDescription,$ScaleMode,$R,$G,$B,$DrawTicks=TRUE,$Angle=0,$Decimals=1,$WithMargin=FALSE,$SkipLabels=1,$RightScale=FALSE)
+ *     drawRightScale($Data,$DataDescription,$ScaleMode,$R,$G,$B,$DrawTicks=TRUE,$Angle=0,$Decimals=1,$WithMargin=FALSE,$SkipLabels=1)
+ *     drawXYScale($Data,$DataDescription,$YSerieName,$XSerieName,$R,$G,$B,$WithMargin=0,$Angle=0,$Decimals=1)
+ *     drawGrid($LineWidth,$Mosaic=TRUE,$R=220,$G=220,$B=220,$Alpha=100)
+ *     drawLegend($XPos,$YPos,$DataDescription,$R,$G,$B,$Rs=-1,$Gs=-1,$Bs=-1,$Rt=0,$Gt=0,$Bt=0,$Border=FALSE)
+ *     drawPieLegend($XPos,$YPos,$Data,$DataDescription,$R,$G,$B)
+ *     drawTitle($XPos,$YPos,$Value,$R,$G,$B,$XPos2=-1,$YPos2=-1,$Shadow=FALSE)
+ *     drawTreshold($Value,$R,$G,$B,$ShowLabel=FALSE,$ShowOnRight=FALSE,$TickWidth=4,$FreeText=NULL)
+ *     drawArea($Data,$Serie1,$Serie2,$R,$G,$B,$Alpha = 50)
+ *     drawRadarAxis($Data,$DataDescription,$Mosaic=TRUE,$BorderOffset=10,$A_R=60,$A_G=60,$A_B=60,$S_R=200,$S_G=200,$S_B=200,$MaxValue=-1)
+ *     drawGraphAreaGradient($R,$G,$B,$Decay,$Target=TARGET_GRAPHAREA)
+ *     drawTextBox($X1,$Y1,$X2,$Y2,$Text,$Angle=0,$R=255,$G=255,$B=255,$Align=ALIGN_LEFT,$Shadow=TRUE,$BgR=-1,$BgG=-1,$BgB=-1,$Alpha=100)
+ *     getLegendBoxSize($DataDescription)
+ *     loadColorPalette($FileName,$Delimiter=",")
+ *     reportWarnings($Interface="CLI")
+ *     setGraphArea($X1,$Y1,$X2,$Y2)
+ *     setLabel($Data,$DataDescription,$SerieName,$ValueName,$Caption,$R=210,$G=210,$B=210)
+ *     setColorPalette($ID,$R,$G,$B)
+ *     setCurrency($Currency)
+ *     setDateFormat($Format)
+ *     setFontProperties($FontName,$FontSize)
+ *     setLineStyle($Width=1,$DotSize=0)
+ *     setFixedScale($VMin,$VMax,$Divisions=5,$VXMin=0,$VXMin=0,$XDivisions=5)
+ *     setShadowProperties($XDistance=1,$YDistance=1,$R=60,$G=60,$B=60,$Alpha)
+ *     writeValues($Data,$DataDescription,$Series)
+ *   Graphs methods :
+ *     drawPlotGraph($Data,$DataDescription,$BigRadius=5,$SmallRadius=2,$R2=-1,$G2=-1,$B2=-1,$Shadow=FALSE)
+ *     drawXYPlotGraph($Data,$DataDescription,$YSerieName,$XSerieName,$PaletteID=0,$BigRadius=5,$SmallRadius=2,$R2=-1,$G2=-1,$B2=-1)
+ *     drawLineGraph($Data,$DataDescription,$SerieName="")
+ *     drawXYGraph($Data,$DataDescription,$YSerieName,$XSerieName,$PaletteID=0)
+ *     drawFilledLineGraph($Data,$DataDescription,$Alpha=100,$AroundZero=FALSE)
+ *     drawCubicCurve($Data,$DataDescription,$Accuracy=.1,$SerieName="")
+ *     drawFilledCubicCurve($Data,$DataDescription,$Accuracy=.1,$Alpha=100,$AroundZero=FALSE)
+ *     drawOverlayBarGraph($Data,$DataDescription,$Alpha=50)
+ *     drawBarGraph($Data,$DataDescription,$Shadow=FALSE)
+ *     drawStackedBarGraph($Data,$DataDescription,$Alpha=50,$Contiguous=FALSE)
+ *     drawLimitsGraph($Data,$DataDescription,$R=0,$G=0,$B=0)
+ *     drawRadar($Data,$DataDescription,$BorderOffset=10,$MaxValue=-1)
+ *     drawFilledRadar($Data,$DataDescription,$Alpha=50,$BorderOffset=10,$MaxValue=-1)
+ *     drawBasicPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$R=255,$G=255,$B=255,$Decimals=0)
+ *     drawFlatPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$SpliceDistance=0,$Decimals = 0)
+ *     drawFlatPieGraphWithShadow($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$SpliceDistance=0,$Decimals = 0)
+ *     drawPieGraph($Data,$DataDescription,$XPos,$YPos,$Radius=100,$DrawLabels=PIE_NOLABEL,$EnhanceColors=TRUE,$Skew=60,$SpliceHeight=20,$SpliceDistance=0,$Decimals=0)
+ *    Other methods :
+ *     setImageMap($Mode=TRUE,$GraphID="MyGraph")
+ *     getImageMap($MapName,$Flush=TRUE)
+ *     Render($FileName)
+ *     Stroke()
  */
 
 /* Declare some script wide constants */
@@ -119,76 +119,76 @@ define ( "ALIGN_BOTTOM_RIGHT", 9 );
  */
 class pChart {
 	/* Palettes definition */
-	var $Palette = array ("0" => array ("R" => 188, "G" => 224, "B" => 46 ), "1" => array ("R" => 224, "G" => 100, "B" => 46 ), "2" => array ("R" => 224, "G" => 214, "B" => 46 ), "3" => array ("R" => 46, "G" => 151, "B" => 224 ), "4" => array ("R" => 176, "G" => 46, "B" => 224 ), "5" => array ("R" => 224, "G" => 46, "B" => 117 ), "6" => array ("R" => 92, "G" => 224, "B" => 46 ), "7" => array ("R" => 224, "G" => 176, "B" => 46 ) );
+	protected $Palette = array ("0" => array ("R" => 188, "G" => 224, "B" => 46 ), "1" => array ("R" => 224, "G" => 100, "B" => 46 ), "2" => array ("R" => 224, "G" => 214, "B" => 46 ), "3" => array ("R" => 46, "G" => 151, "B" => 224 ), "4" => array ("R" => 176, "G" => 46, "B" => 224 ), "5" => array ("R" => 224, "G" => 46, "B" => 117 ), "6" => array ("R" => 92, "G" => 224, "B" => 46 ), "7" => array ("R" => 224, "G" => 176, "B" => 46 ) );
 	
 	/* Some static vars used in the class */
-	var $XSize = NULL;
-	var $YSize = NULL;
-	var $Picture = NULL;
-	var $ImageMap = NULL;
+	protected $XSize = NULL;
+	protected $YSize = NULL;
+	protected $Picture = NULL;
+	protected $ImageMap = NULL;
 	
 	/* Error management */
-	var $ErrorReporting = FALSE;
-	var $ErrorInterface = "CLI";
-	var $Errors = NULL;
-	var $ErrorFontName = "Fonts/pf_arma_five.ttf";
-	var $ErrorFontSize = 6;
+	protected $ErrorReporting = FALSE;
+	protected $ErrorInterface = "CLI";
+	protected $Errors = NULL;
+	protected $ErrorFontName = "Fonts/pf_arma_five.ttf";
+	protected $ErrorFontSize = 6;
 	
 	/* vars related to the graphing area */
-	var $GArea_X1 = NULL;
-	var $GArea_Y1 = NULL;
-	var $GArea_X2 = NULL;
-	var $GArea_Y2 = NULL;
-	var $GAreaXOffset = NULL;
-	var $VMax = NULL;
-	var $VMin = NULL;
-	var $VXMax = NULL;
-	var $VXMin = NULL;
-	var $Divisions = NULL;
-	var $XDivisions = NULL;
-	var $DivisionHeight = NULL;
-	var $XDivisionHeight = NULL;
-	var $DivisionCount = NULL;
-	var $XDivisionCount = NULL;
-	var $DivisionRatio = NULL;
-	var $XDivisionRatio = NULL;
-	var $DivisionWidth = NULL;
-	var $DataCount = NULL;
-	var $Currency = "\$";
+	protected $GArea_X1 = NULL;
+	protected $GArea_Y1 = NULL;
+	protected $GArea_X2 = NULL;
+	protected $GArea_Y2 = NULL;
+	protected $GAreaXOffset = NULL;
+	protected $VMax = NULL;
+	protected $VMin = NULL;
+	protected $VXMax = NULL;
+	protected $VXMin = NULL;
+	protected $Divisions = NULL;
+	protected $XDivisions = NULL;
+	protected $DivisionHeight = NULL;
+	protected $XDivisionHeight = NULL;
+	protected $DivisionCount = NULL;
+	protected $XDivisionCount = NULL;
+	protected $DivisionRatio = NULL;
+	protected $XDivisionRatio = NULL;
+	protected $DivisionWidth = NULL;
+	protected $DataCount = NULL;
+	protected $Currency = "\$";
 	
 	/* Text format related vars */
-	var $FontName = NULL;
-	var $FontSize = NULL;
-	var $DateFormat = "d/m/Y";
+	protected $FontName = NULL;
+	protected $FontSize = NULL;
+	protected $DateFormat = "d/m/Y";
 	
 	/* Lines format related vars */
-	var $LineWidth = 1;
-	var $LineDotSize = 0;
+	protected $LineWidth = 1;
+	protected $LineDotSize = 0;
 	
 	/* Layer related vars */
-	var $Layers = NULL;
+	protected $Layers = NULL;
 	
 	/* Set antialias quality : 0 is maximum, 100 minimum*/
-	var $AntialiasQuality = 0;
+	protected $AntialiasQuality = 0;
 	
 	/* Shadow settings */
-	var $ShadowActive = FALSE;
-	var $ShadowXDistance = 1;
-	var $ShadowYDistance = 1;
-	var $ShadowRColor = 60;
-	var $ShadowGColor = 60;
-	var $ShadowBColor = 60;
-	var $ShadowAlpha = 50;
-	var $ShadowBlur = 0;
+	protected $ShadowActive = FALSE;
+	protected $ShadowXDistance = 1;
+	protected $ShadowYDistance = 1;
+	protected $ShadowRColor = 60;
+	protected $ShadowGColor = 60;
+	protected $ShadowBColor = 60;
+	protected $ShadowAlpha = 50;
+	protected $ShadowBlur = 0;
 	
 	/* Image Map settings */
-	var $BuildMap = FALSE;
-	var $MapFunction = NULL;
-	var $tmpFolder = "tmp/";
-	var $MapID = NULL;
+	protected $BuildMap = FALSE;
+	protected $MapFunction = NULL;
+	protected $tmpFolder = "tmp/";
+	protected $MapID = NULL;
 	
 	/* This function create the background picture */
-	function pChart($XSize, $YSize) {
+	function __construct($XSize, $YSize) {
 		$this->XSize = $XSize;
 		$this->YSize = $YSize;
 		$this->Picture = imagecreatetruecolor ( $XSize, $YSize );
@@ -3861,6 +3861,10 @@ class pChart {
 	}
 }
 
+/**
+ * 
+ * @param $Message
+ */
 function RaiseFatal($Message) {
 	echo "[FATAL] " . $Message . "\r\n";
 	exit ();

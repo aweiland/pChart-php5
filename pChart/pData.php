@@ -1,47 +1,47 @@
 <?php
 /**
- *    pData - Simplifying data population for pChart
- *    Copyright (C) 2008 Jean-Damien POGOLOTTI
- *    Version  1.13 last updated on 08/17/08
+ * pData - Simplifying data population for pChart
+ * @copyright 2008 Jean-Damien POGOLOTTI
+ * @version 1.13 last updated on 08/17/08
  *
- *    http://pchart.sourceforge.net
+ * http://pchart.sourceforge.net
  *
- *    This program is free software: you can redistribute it and/or modify
- *    it under the terms of the GNU General Public License as published by
- *    the Free Software Foundation, either version 1,2,3 of the License, or
- *    (at your option) any later version.
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 1,2,3 of the License, or
+ * (at your option) any later version.
  *
- *    This program is distributed in the hope that it will be useful,
- *    but WITHOUT ANY WARRANTY; without even the implied warranty of
- *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *    GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *    You should have received a copy of the GNU General Public License
- *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- *    Class initialisation :
- *     pData()
- *    Data populating methods :
- *     ImportFromCSV($FileName,$Delimiter=",",$DataColumns=-1,$HasHeader=FALSE,$DataName=-1)
- *     AddPoint($Value,$Serie="Serie1",$Description="")
- *    Series manipulation methods :
- *     AddSerie($SerieName="Serie1")
- *     AddAllSeries()
- *     RemoveSerie($SerieName="Serie1")
- *     SetAbsciseLabelSerie($SerieName = "Name")
- *     SetSerieName($Name,$SerieName="Serie1")
- * +   SetSerieSymbol($Name,$Symbol)
- *     SetXAxisName($Name="X Axis")
- *     SetYAxisName($Name="Y Axis")
- *     SetXAxisFormat($Format="number")
- *     SetYAxisFormat($Format="number")
- *     SetXAxisUnit($Unit="")
- *     SetYAxisUnit($Unit="")
- *     removeSerieName($SerieName)
- *     removeAllSeries()
- *    Data retrieval methods :
- *     GetData()
- *     GetDataDescription()
+ * Class initialisation :
+ *  pData()
+ * Data populating methods :
+ *  ImportFromCSV($FileName,$Delimiter=",",$DataColumns=-1,$HasHeader=FALSE,$DataName=-1)
+ *  AddPoint($Value,$Serie="Serie1",$Description="")
+ * Series manipulation methods :
+ *  AddSerie($SerieName="Serie1")
+ *  AddAllSeries()
+ *  RemoveSerie($SerieName="Serie1")
+ *  SetAbsciseLabelSerie($SerieName = "Name")
+ *  SetSerieName($Name,$SerieName="Serie1")
+ *  SetSerieSymbol($Name,$Symbol)
+ *  SetXAxisName($Name="X Axis")
+ *  SetYAxisName($Name="Y Axis")
+ *  SetXAxisFormat($Format="number")
+ *  SetYAxisFormat($Format="number")
+ *  SetXAxisUnit($Unit="")
+ *  SetYAxisUnit($Unit="")
+ *  removeSerieName($SerieName)
+ *  removeAllSeries()
+ * Data retrieval methods :
+ *  GetData()
+ *  GetDataDescription()
  */
 class pData {
 	protected $Data;
@@ -131,6 +131,15 @@ class pData {
 		}
 	}
 	
+	/**
+	 * Alias for AddSerie
+	 * @param string $SerieName
+	 * @see AddSerie
+	 */
+	public function AddSeries($SerieName = "Serie1") {
+		$this->AddSerie($SerieName);
+	}
+	
 	public function AddSerie($SerieName = "Serie1") {
 		if (! isset ( $this->DataDescription ["Values"] )) {
 			$this->DataDescription ["Values"] [] = $SerieName;
@@ -157,6 +166,15 @@ class pData {
 		}
 	}
 	
+	/**
+	 * Alias for RemoveSerie
+	 * @param string $SerieName
+	 * @see RemoveSerie()
+	 */
+	public function RemoveSeries($SerieName = "Serie1") {
+		$this->RemoveSerie($SerieName);
+	}
+	
 	public function RemoveSerie($SerieName = "Serie1") {
 		if (! isset ( $this->DataDescription ["Values"] ))
 			return (0);
@@ -168,8 +186,27 @@ class pData {
 		}
 	}
 	
+	/**
+	 * Alilas for SetAbsciseLabelSerie
+	 * @param string $SerieName
+	 * @see SetAbsciseLabelSerie
+	 */
+	public function SetAbsciseLabelSeries($SerieName = "Name") {
+		$this->SetAbsciseLabelSerie($SerieName);
+	}
+		
 	public function SetAbsciseLabelSerie($SerieName = "Name") {
 		$this->DataDescription ["Position"] = $SerieName;
+	}
+	
+	/**
+	 * Alias for SetSerieName
+	 * @param string $Name
+	 * @param string $SerieName
+	 * @see SetSerieName()
+	 */
+	public function SetSeriesName($Name, $SerieName = "Serie1") {
+		$this->SetSerieName($Name, $SerieName);
 	}
 	
 	public function SetSerieName($Name, $SerieName = "Serie1") {
@@ -200,6 +237,15 @@ class pData {
 		$this->DataDescription ["Unit"] ["Y"] = $Unit;
 	}
 	
+	/**
+	 * Alias for SetSerieSymbol
+	 * @param string $Name
+	 * @param string $Symbol
+	 */
+	public function SetSeriesSymbol($Name, $Symbol) {
+		$this->SetSeriesSymbol($Name, $Symbol);
+	}
+	
 	public function SetSerieSymbol($Name, $Symbol) {
 		$this->DataDescription ["Symbol"] [$Name] = $Symbol;
 	}
@@ -213,6 +259,9 @@ class pData {
 			unset ( $this->DataDescription ["Description"] [$SerieName] );
 	}
 	
+	/**
+	 * @todo another camel case issue
+	 */
 	public function removeAllSeries() {
 		foreach ( $this->DataDescription ["Values"] as $Key => $Value )
 			unset ( $this->DataDescription ["Values"] [$Key] );
