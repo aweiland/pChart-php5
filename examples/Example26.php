@@ -66,4 +66,3 @@
 
  // Render the picture
  $Test->Render("example26.png");
-?>

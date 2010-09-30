@@ -4,8 +4,8 @@
  */
 
  // Standard inclusions   
- include("pChart/pData.php");
- include("pChart/pChart.php");
+ include("../lib/pData.php");
+ include("../lib/pChart.php");
 
  // Dataset definition 
  $DataSet = new pData();
@@ -16,7 +16,7 @@
 
  // Initialise the graph
  $Test = new pChart(100,30);
- $Test->setFontProperties("Fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
  $Test->drawFilledRoundedRectangle(2,2,98,28,2,230,230,230);
  $Test->setGraphArea(5,5,95,25);
  $Test->drawGraphArea(255,255,255);
