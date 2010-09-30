@@ -4,8 +4,8 @@
  */
 
  // Standard inclusions   
- include("pChart/pData.class");
- include("pChart/pChart.class");
+ include("../lib/pData.php");
+ include("../lib/pChart.php");
 
  // Dataset definition 
  $DataSet = new pData;
@@ -22,11 +22,11 @@
  $Test->drawGraphAreaGradient(90,90,90,90,TARGET_BACKGROUND);
 
  // Prepare the graph area
- $Test->setFontProperties("fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
  $Test->setGraphArea(60,40,595,190);
 
  // Initialise graph area
- $Test->setFontProperties("fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
 
  // Draw the SourceForge Rank graph
  $DataSet->SetYAxisName("Sourceforge Rank");
@@ -55,11 +55,11 @@
  $Test->drawPlotGraph($DataSet->GetData(),$DataSet->GetDataDescription(),3,2,255,255,255);
 
  // Write the legend (box less)
- $Test->setFontProperties("fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
  $Test->drawLegend(530,5,$DataSet->GetDataDescription(),0,0,0,0,0,0,255,255,255,FALSE);
 
  // Write the title
- $Test->setFontProperties("fonts/MankSans.ttf",18);
+ $Test->setFontProperties("../Fonts/MankSans.ttf",18);
  $Test->setShadowProperties(1,1,0,0,0);
  $Test->drawTitle(0,0,"SourceForge ranking summary",255,255,255,660,30,TRUE);
  $Test->clearShadow();

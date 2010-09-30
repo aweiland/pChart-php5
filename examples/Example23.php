@@ -4,8 +4,8 @@
  */
 
  // Standard inclusions   
- include("pChart/pData.class");
- include("pChart/pChart.class");
+ include("../lib/pData.php");
+ include("../lib/pChart.php");
 
  // Dataset definition 
  $DataSet = new pData;
@@ -25,7 +25,7 @@
  $Test = new pChart(700,230);
  $Test->drawGraphAreaGradient(132,173,131,50,TARGET_BACKGROUND);
 
- $Test->setFontProperties("Fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
  $Test->setGraphArea(120,20,675,190);
  $Test->drawGraphArea(213,217,221,FALSE);
  $Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_ADDALL,213,217,221,TRUE,0,2,TRUE);
@@ -40,7 +40,7 @@
  $Test->drawTextBox(0,0,50,230,$Title,90,255,255,255,ALIGN_BOTTOM_CENTER,TRUE,0,0,0,30);
 
  // Draw the legend
- $Test->setFontProperties("Fonts/tahoma.ttf",8);
+ $Test->setFontProperties("../Fonts/tahoma.ttf",8);
  $Test->drawLegend(610,10,$DataSet->GetDataDescription(),236,238,240,52,58,82);
 
  // Render the picture
