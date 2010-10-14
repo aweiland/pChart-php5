@@ -102,6 +102,15 @@ class pData {
 		}
 	}
 	
+	/**
+	 * Add one or more points to the data set.
+	 *
+	 * @param $Value This may be a single value, or an array. If it is
+	 * an associative array the key values are ignored. The members of
+	 * the array are added sequentially to the data set, taking on
+	 * auto-incremented ID values based on the current state of the
+	 * data set.
+	 */
 	public function AddPoint($Value, $Serie = "Serie1", $Description = "") {
 		if (is_array ( $Value ) && count ( $Value ) == 1)
 			$Value = $Value [0];
