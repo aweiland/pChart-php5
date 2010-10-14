@@ -44,12 +44,10 @@
  *  GetDataDescription()
  */
 class pData {
-	protected $Data;
-	protected $DataDescription;
+	protected $Data = array();
+	protected $DataDescription = array();
 	
 	public function __construct() {
-		$this->Data = "";
-		$this->DataDescription = "";
 		$this->DataDescription ["Position"] = "Name";
 		$this->DataDescription ["Format"] ["X"] = "number";
 		$this->DataDescription ["Format"] ["Y"] = "number";
@@ -109,7 +107,7 @@ class pData {
 			$Value = $Value [0];
 		
 		$ID = 0;
-		for($i = 0; $i <= count ( $this->Data ); $i ++) {
+		for($i = 0; $i < count ( $this->Data ); $i ++) {
 			if (isset ( $this->Data [$i] [$Serie] )) {
 				$ID = $i + 1;
 			}
