@@ -119,7 +119,15 @@ define ( "ALIGN_BOTTOM_RIGHT", 9 );
  */
 class pChart {
 	/* Palettes definition */
-	protected $Palette = array ("0" => array ("R" => 188, "G" => 224, "B" => 46 ), "1" => array ("R" => 224, "G" => 100, "B" => 46 ), "2" => array ("R" => 224, "G" => 214, "B" => 46 ), "3" => array ("R" => 46, "G" => 151, "B" => 224 ), "4" => array ("R" => 176, "G" => 46, "B" => 224 ), "5" => array ("R" => 224, "G" => 46, "B" => 117 ), "6" => array ("R" => 92, "G" => 224, "B" => 46 ), "7" => array ("R" => 224, "G" => 176, "B" => 46 ) );
+	protected $Palette = 
+		array("0" => array ("R" => 188, "G" => 224, "B" => 46 ),
+			  "1" => array ("R" => 224, "G" => 100, "B" => 46 ),
+			  "2" => array ("R" => 224, "G" => 214, "B" => 46 ),
+			  "3" => array ("R" => 46, "G" => 151, "B" => 224 ),
+			  "4" => array ("R" => 176, "G" => 46, "B" => 224 ),
+			  "5" => array ("R" => 224, "G" => 46, "B" => 117 ),
+			  "6" => array ("R" => 92, "G" => 224, "B" => 46 ),
+			  "7" => array ("R" => 224, "G" => 176, "B" => 46 ) );
 	
 	/* Some static vars used in the class */
 	protected $XSize = NULL;
