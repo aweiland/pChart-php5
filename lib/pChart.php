@@ -2,7 +2,7 @@
 /**
  *    pChart - a PHP class to build charts!
  *    Copyright (C) 2008 Jean-Damien POGOLOTTI
- *    Version  1.27d last updated on 09/30/08
+ *    Version 2.0
  *
  *    http://pchart.sourceforge.net
  *

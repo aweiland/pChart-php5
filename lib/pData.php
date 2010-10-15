@@ -2,7 +2,7 @@
 /**
  * pData - Simplifying data population for pChart
  * @copyright 2008 Jean-Damien POGOLOTTI
- * @version 1.13 last updated on 08/17/08
+ * @version 2.0
  *
  * http://pchart.sourceforge.net
  *

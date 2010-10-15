@@ -2,7 +2,7 @@
 /**
  * pCache - Faster renderding using data cache
  * @copyright Copyright (C) 2008 Jean-Damien POGOLOTTI
- * @version  1.1.2 last updated on 06/17/08
+ * @version 2.0
  * 
  * http://pchart.sourceforge.net
  *
