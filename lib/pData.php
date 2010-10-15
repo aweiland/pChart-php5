@@ -88,7 +88,7 @@ class pData {
 	 * auto-incremented ID values based on the current state of the
 	 * data set.
 	 */
-	public function AddPoint($Value, $Serie = "Serie1", $Description = "") {
+	public function AddPoint($Value, $Serie = "Series1", $Description = "") {
 		if (is_array ( $Value ) && count ( $Value ) == 1)
 			$Value = $Value [0];
 		
@@ -120,11 +120,11 @@ class pData {
 	 * @param string $SerieName
 	 * @see AddSerie
 	 */
-	public function AddSeries($SerieName = "Serie1") {
+	public function AddSeries($SerieName = "Series1") {
 		$this->AddSerie($SerieName);
 	}
 	
-	public function AddSerie($SerieName = "Serie1") {
+	public function AddSerie($SerieName = "Series1") {
 		if (! isset ( $this->DataDescription ["Values"] )) {
 			$this->DataDescription ["Values"] [] = $SerieName;
 		} else {
@@ -155,11 +155,11 @@ class pData {
 	 * @param string $SerieName
 	 * @see RemoveSerie()
 	 */
-	public function RemoveSeries($SerieName = "Serie1") {
+	public function RemoveSeries($SerieName = "Series1") {
 		$this->RemoveSerie($SerieName);
 	}
 	
-	public function RemoveSerie($SerieName = "Serie1") {
+	public function RemoveSerie($SerieName = "Series1") {
 		if (! isset ( $this->DataDescription ["Values"] ))
 			return (0);
 		
@@ -189,11 +189,11 @@ class pData {
 	 * @param string $SerieName
 	 * @see SetSerieName()
 	 */
-	public function SetSeriesName($Name, $SerieName = "Serie1") {
+	public function SetSeriesName($Name, $SeriesName = "Series1") {
 		$this->SetSerieName($Name, $SerieName);
 	}
 	
-	public function SetSerieName($Name, $SerieName = "Serie1") {
+	public function SetSerieName($Name, $SerieName = "Series1") {
 		$this->DataDescription ["Description"] [$SerieName] = $Name;
 	}
 	
@@ -221,24 +221,14 @@ class pData {
 		$this->DataDescription ["Unit"] ["Y"] = $Unit;
 	}
 	
-	/**
-	 * Alias for SetSerieSymbol
-	 * @param string $Name
-	 * @param string $Symbol
-	 */
-	public function SetSeriesSymbol($Name, $Symbol) {
-		$this->SetSeriesSymbol($Name, $Symbol);
-	}
-	
-	public function SetSerieSymbol($Name, $Symbol) {
+	public function setSeriesSymbol($Name, $Symbol) {
 		$this->DataDescription ["Symbol"] [$Name] = $Symbol;
 	}
 	
 	/**
-	 * @todo should this be renamed to match camel case of all the rest?
 	 * @param unknown_type $SerieName
 	 */
-	public function removeSerieName($SerieName) {
+	public function removeSeriesName($SerieName) {
 		if (isset ( $this->DataDescription ["Description"] [$SerieName] ))
 			unset ( $this->DataDescription ["Description"] [$SerieName] );
 	}

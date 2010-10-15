@@ -12,9 +12,9 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 
 		/* NB: Key values passed in the array to addPoint are
 		 discarded */
-		$this->assertEquals(array(0 => array('Serie1' => 4,
+		$this->assertEquals(array(0 => array('Series1' => 4,
 											 'Name' => 0),
-								  1 => array('Serie1' => 5,
+								  1 => array('Series1' => 5,
 											 'Name' => 1)),
 							$data->getData());
 	}
