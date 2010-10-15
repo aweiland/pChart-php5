@@ -18,18 +18,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Class initialisation :
- *  pCache($CacheFolder="Cache/")
- * Cache management :
- *  IsInCache($Data)
- *  GetFromCache($ID,$Data)
- *  WriteToCache($ID,$Data,$Picture)
- *  DeleteFromCache($ID,$Data)
- *  ClearCache()
- * Inner functions :
- *  GetHash($ID,$Data)
  */
+
 class pCache {
 	protected $HashKey = "";
 	protected $CacheFolder = "Cache/";

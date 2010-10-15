@@ -18,31 +18,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Class initialisation :
- *  pData()
- * Data populating methods :
- *  ImportFromCSV($FileName,$Delimiter=",",$DataColumns=-1,$HasHeader=FALSE,$DataName=-1)
- *  AddPoint($Value,$Serie="Serie1",$Description="")
- * Series manipulation methods :
- *  AddSerie($SerieName="Serie1")
- *  AddAllSeries()
- *  RemoveSerie($SerieName="Serie1")
- *  SetAbsciseLabelSerie($SerieName = "Name")
- *  SetSerieName($Name,$SerieName="Serie1")
- *  SetSerieSymbol($Name,$Symbol)
- *  SetXAxisName($Name="X Axis")
- *  SetYAxisName($Name="Y Axis")
- *  SetXAxisFormat($Format="number")
- *  SetYAxisFormat($Format="number")
- *  SetXAxisUnit($Unit="")
- *  SetYAxisUnit($Unit="")
- *  removeSerieName($SerieName)
- *  removeAllSeries()
- * Data retrieval methods :
- *  GetData()
- *  GetDataDescription()
  */
+
 class pData {
 	protected $Data = array();
 	protected $DataDescription = array();
