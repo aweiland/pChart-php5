@@ -6,6 +6,9 @@ However, it has not been updated in a long time and it's compatibility
 with PHP 5 will soon be lost because of new language features 
 (namely constuctors can no longer be the class name as of PHP 5.3.3)
 
+The v2 branch will not retain backward compatibility with the old API
+(though it will not be changed unnecessarily)
+
 ## Goals
 
 The goal of this project is:
