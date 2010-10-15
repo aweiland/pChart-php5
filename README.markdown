@@ -17,8 +17,7 @@ The goal of this project is:
 * Fix bugs
 * Refactor as needed
 * Add proper docblocks to all functions (and there's a lot of them)
-* Attempt to maintain compatibility with existing scripts (i.e. do not rename/remove any public functions)
-* Rename some functions but keep references to existing (it seems the original author's native language was not english)
+* Rename some functions (it seems the original author's native language was not english)
  
 ## Status
 
