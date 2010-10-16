@@ -350,6 +350,10 @@ class pChart {
 	 * Compute and draw the scale 
 	 */
 	function drawScale($Data, $DataDescription, $ScaleMode, $R, $G, $B, $DrawTicks = TRUE, $Angle = 0, $Decimals = 1, $WithMargin = FALSE, $SkipLabels = 1, $RightScale = FALSE) {
+		if (empty($Data)) {
+			throw new InvalidArgumentException("Empty data passed to drawScale()");
+		}
+
 		/* Validate the Data and DataDescription array */
 		$this->validateData ( "drawScale", $Data );
 		
