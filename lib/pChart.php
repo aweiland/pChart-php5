@@ -502,57 +502,8 @@ class pChart {
 			if ($DataRange == 0) {
 				$DataRange = .1;
 			}
-			
-			/* Compute automatic scaling */
-			$ScaleOk = FALSE;
-			$Factor = 1;
-			$MinDivHeight = 25;
-			$MaxDivs = ($this->GArea_Y2 - $this->GArea_Y1) / $MinDivHeight;
-			
-			if ($this->VMin == 0 && $this->VMax == 0) {
-				$this->VMin = 0;
-				$this->VMax = 2;
-				$Scale = 1;
-				$Divisions = 2;
-			} elseif ($MaxDivs > 1) {
-				while ( ! $ScaleOk ) {
-					$Scale1 = ($this->VMax - $this->VMin) / $Factor;
-					$Scale2 = ($this->VMax - $this->VMin) / $Factor / 2;
-					$Scale4 = ($this->VMax - $this->VMin) / $Factor / 4;
-					
-					if ($Scale1 > 1 && $Scale1 <= $MaxDivs && ! $ScaleOk) {
-						$ScaleOk = TRUE;
-						$Divisions = floor ( $Scale1 );
-						$Scale = 1;
-					}
-					if ($Scale2 > 1 && $Scale2 <= $MaxDivs && ! $ScaleOk) {
-						$ScaleOk = TRUE;
-						$Divisions = floor ( $Scale2 );
-						$Scale = 2;
-					}
-					if (! $ScaleOk) {
-						if ($Scale2 > 1) {
-							$Factor = $Factor * 10;
-						}
-						if ($Scale2 < 1) {
-							$Factor = $Factor / 10;
-						}
-					}
-				}
-				
-				if (floor ( $this->VMax / $Scale / $Factor ) != $this->VMax / $Scale / $Factor) {
-					$GridID = floor ( $this->VMax / $Scale / $Factor ) + 1;
-					$this->VMax = $GridID * $Scale * $Factor;
-					$Divisions ++;
-				}
-				
-				if (floor ( $this->VMin / $Scale / $Factor ) != $this->VMin / $Scale / $Factor) {
-					$GridID = floor ( $this->VMin / $Scale / $Factor );
-					$this->VMin = $GridID * $Scale * $Factor;
-					$Divisions ++;
-				}
-			} else /* Can occurs for small graphs */
-				$Scale = 1;
+
+			$this->calculateScales($Scale, $Divisions);
 			
 			if (! isset ( $Divisions ))
 				$Divisions = 2;
@@ -3824,7 +3775,7 @@ class pChart {
 			}
 		}
 		
-		if (max ( $DataSummary ) == 0)
+		if (empty($DataSummary))
 			$this->Errors [] = "[Warning] " . $FunctionName . " - No data set.";
 		
 		foreach ( $DataSummary as $key => $Value ) {
@@ -4043,6 +3994,67 @@ class pChart {
 		$this->AntialiasQuality = $AntialiasQuality;
 	}
 
+	/**
+	 * @todo I don't know what this does yet, I'm refactoring...
+	 */
+	public function calculateScales(& $Scale, & $Divisions) {
+		/* Compute automatic scaling */
+		$ScaleOk = FALSE;
+		$Factor = 1;
+		$MinDivHeight = 25;
+		$MaxDivs = ($this->GArea_Y2 - $this->GArea_Y1) / $MinDivHeight;
+		
+		if ($this->VMax <= $this->VMin) {
+			throw new Exception("Impossible to calculate scales when VMax <= VMin");
+		}
+
+		if ($this->VMin == 0 && $this->VMax == 0) {
+			$this->VMin = 0;
+			$this->VMax = 2;
+			$Scale = 1;
+			$Divisions = 2;
+		} elseif ($MaxDivs > 1) {
+			while ( ! $ScaleOk ) {
+				$Scale1 = ($this->VMax - $this->VMin) / $Factor;
+				$Scale2 = ($this->VMax - $this->VMin) / $Factor / 2;
+				$Scale4 = ($this->VMax - $this->VMin) / $Factor / 4;
+
+				print "$Scale1, $Scale2, $Scale4\n";
+				
+				if ($Scale1 > 1 && $Scale1 <= $MaxDivs && ! $ScaleOk) {
+					$ScaleOk = TRUE;
+					$Divisions = floor ( $Scale1 );
+					$Scale = 1;
+				}
+				if ($Scale2 > 1 && $Scale2 <= $MaxDivs && ! $ScaleOk) {
+					$ScaleOk = TRUE;
+					$Divisions = floor ( $Scale2 );
+					$Scale = 2;
+				}
+				if (! $ScaleOk) {
+					if ($Scale2 > 1) {
+						$Factor = $Factor * 10;
+					}
+					if ($Scale2 < 1) {
+						$Factor = $Factor / 10;
+					}
+				}
+			}
+			
+			if (floor ( $this->VMax / $Scale / $Factor ) != $this->VMax / $Scale / $Factor) {
+				$GridID = floor ( $this->VMax / $Scale / $Factor ) + 1;
+				$this->VMax = $GridID * $Scale * $Factor;
+				$Divisions ++;
+			}
+			
+			if (floor ( $this->VMin / $Scale / $Factor ) != $this->VMin / $Scale / $Factor) {
+				$GridID = floor ( $this->VMin / $Scale / $Factor );
+				$this->VMin = $GridID * $Scale * $Factor;
+				$Divisions ++;
+			}
+		} else /* Can occur for small graphs */
+			  $Scale = 1;
+	}
 }
 
 /**
