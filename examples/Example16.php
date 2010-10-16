@@ -9,7 +9,7 @@
 
  // Dataset definition 
  $DataSet = new pData;
- $DataSet->ImportFromCSV("../Sample/CO2.csv",",",array(1,2,3,4),TRUE,0);
+ $DataSet->ImportFromCSV("../sample/CO2.csv",",",array(1,2,3,4),TRUE,0);
  $DataSet->AddAllSeries();
  $DataSet->SetAbsciseLabelSerie();
  $DataSet->SetYAxisName("CO2 concentrations");

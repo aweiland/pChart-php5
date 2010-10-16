@@ -9,7 +9,7 @@
 
  // Dataset definition 
  $DataSet = new pData;
- $DataSet->ImportFromCSV("../Sample/datawithtitle.csv",",",array(1,2,3),TRUE,0);
+ $DataSet->ImportFromCSV("../sample/datawithtitle.csv",",",array(1,2,3),TRUE,0);
  $DataSet->AddAllSeries();
  $DataSet->SetAbsciseLabelSerie();
 

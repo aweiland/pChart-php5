@@ -19,8 +19,8 @@
  $DataSet->SetSerieName("Company B","Serie2");
  $DataSet->SetYAxisName("Product sales");
  $DataSet->SetYAxisUnit("k");
- $DataSet->SetSerieSymbol("Serie1","../Sample/Point_Asterisk.gif");
- $DataSet->SetSerieSymbol("Serie2","../Sample/Point_Cd.gif");
+ $DataSet->SetSerieSymbol("Serie1","../sample/Point_Asterisk.gif");
+ $DataSet->SetSerieSymbol("Serie2","../sample/Point_Cd.gif");
 
  // Initialise the graph   
  $Test = new pChart(700,230);
