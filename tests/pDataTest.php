@@ -61,4 +61,25 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 											 'Name' => 1)),
 							$data->getData());
 	}
+
+	public function testAddAllSeries() {
+		$data = new pData;
+
+		$data->addPoint(array(1, 2), 'testseries1');
+		$data->addPoint(array(3, 4), 'testseries2');
+
+		$data->addAllSeries();
+
+		/** @todo It's not clear how to test the effect of
+		 addAllSeries(). The assertion below passes whether or not
+		 addAllSeries() has been called */
+
+		$this->assertEquals(array(0 => array('testseries1' => 1,
+											 'testseries2' => 3,
+											 'Name' => 0),
+								  1 => array('testseries1' => 2,
+											 'testseries2' => 4,
+											 'Name' => 1)),
+							$data->getData());
+	}
 }
