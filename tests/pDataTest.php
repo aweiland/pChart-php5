@@ -89,16 +89,26 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 		$data->addPoint(array(1, 2), 'testseries1');
 		$data->addPoint(array(3, 4), 'testseries2');
 
-		$data->removeSeries('testseries1');
-
-		/** @todo I don't know how to test the effect of
-		 removeSeries().*/
+		$data->addSeries('testseries1');
+		$data->addSeries('testseries2');
 
 		$this->assertEquals(array('Position' => 'Name',
 								  'Format' => array('X' => 'number',
 													'Y' => 'number'),
 								  'Unit' => array('X' => null,
-												  'Y' => null)),
+												  'Y' => null),
+								  'Values' => array('testseries1', 
+													'testseries2')),
+							$data->getDataDescription());
+
+		$data->removeSeries('testseries1');
+
+		$this->assertEquals(array('Position' => 'Name',
+								  'Format' => array('X' => 'number',
+													'Y' => 'number'),
+								  'Unit' => array('X' => null,
+												  'Y' => null),
+								  'Values' => array(1 => 'testseries2')),
 							$data->getDataDescription());
 	}
 }
