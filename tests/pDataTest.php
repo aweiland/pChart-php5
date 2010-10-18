@@ -40,4 +40,25 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 											 'Name' => 3)),
 							$data->getData());
 	}
+
+	public function testAddSeries() {
+		$data = new pData;
+
+		$data->addSeries('testseries1');
+		$data->addSeries('testseries2');
+
+		// Adding the same series a second time should have no effect
+		$data->addSeries('testseries2');
+
+		$data->addPoint(array(1, 2), 'testseries1');
+		$data->addPoint(array(3, 4), 'testseries2');
+
+		$this->assertEquals(array(0 => array('testseries1' => 1,
+											 'testseries2' => 3,
+											 'Name' => 0),
+								  1 => array('testseries1' => 2,
+											 'testseries2' => 4,
+											 'Name' => 1)),
+							$data->getData());
+	}
 }
