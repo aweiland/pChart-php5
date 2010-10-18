@@ -2723,7 +2723,11 @@ class pChart {
 	/**
 	 * This function draw a pseudo-3D pie chart 
 	 */
-	function drawPieGraph($Data, $DataDescription, $XPos, $YPos, $Radius = 100, $DrawLabels = PIE_NOLABEL, $EnhanceColors = TRUE, $Skew = 60, $SpliceHeight = 20, $SpliceDistance = 0, $Decimals = 0) {
+	function drawPieGraph($Data, $DataDescription, $XPos, $YPos,
+						  $Radius = 100, $DrawLabels = PIE_NOLABEL,
+						  $EnhanceColors = TRUE, $Skew = 60,
+						  $SpliceHeight = 20, $SpliceDistance = 0,
+						  $Decimals = 0) {
 		/* Validate the Data and DataDescription array */
 		$this->validateDataDescription ( "drawPieGraph", $DataDescription, FALSE );
 		$this->validateData ( "drawPieGraph", $Data );
@@ -2889,9 +2893,16 @@ class pChart {
 			}
 		}
 		
-		/* Draw Top polygons */
+		$this->drawpieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors, $aTopPlots);
+	}
+
+	private function drawPieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors, $aTopPlots) {
 		for($Key = count ( $iValues ) - 1; $Key >= 0; $Key --) {
-			$C_GraphLo = $this->AllocateColor ( $this->Picture, $this->Palette [$Key] ["R"], $this->Palette [$Key] ["G"], $this->Palette [$Key] ["B"] );
+			$C_GraphLo = $this->AllocateColor ($this->Picture,
+											   $this->Palette [$Key] ["R"],
+											   $this->Palette [$Key] ["G"],
+											   $this->Palette [$Key] ["B"] );
+
 			imagefilledpolygon ( $this->Picture, $TopPlots [$Key], (count ( $TopPlots [$Key] ) + 1) / 2, $C_GraphLo );
 			
 			if ($EnhanceColors) {
@@ -2900,7 +2911,13 @@ class pChart {
 				$En = 0;
 			}
 			for($j = 0; $j <= count ( $aTopPlots [$Key] ) - 4; $j = $j + 2)
-				$this->drawLine ( $aTopPlots [$Key] [$j], $aTopPlots [$Key] [$j + 1], $aTopPlots [$Key] [$j + 2], $aTopPlots [$Key] [$j + 3], $this->Palette [$Key] ["R"] + $En, $this->Palette [$Key] ["G"] + $En, $this->Palette [$Key] ["B"] + $En );
+				$this->drawLine($aTopPlots[$Key][$j],
+								$aTopPlots[$Key][$j + 1],
+								$aTopPlots [$Key] [$j + 2],
+								$aTopPlots [$Key] [$j + 3],
+								$this->Palette [$Key] ["R"] + $En,
+								$this->Palette [$Key] ["G"] + $En,
+								$this->Palette [$Key] ["B"] + $En );
 		}
 	}
 	
