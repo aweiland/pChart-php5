@@ -82,4 +82,23 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 											 'Name' => 1)),
 							$data->getData());
 	}
+
+	public function testRemoveSeries() {
+		$data = new pData;
+
+		$data->addPoint(array(1, 2), 'testseries1');
+		$data->addPoint(array(3, 4), 'testseries2');
+
+		$data->removeSeries('testseries1');
+
+		/** @todo I don't know how to test the effect of
+		 removeSeries().*/
+
+		$this->assertEquals(array('Position' => 'Name',
+								  'Format' => array('X' => 'number',
+													'Y' => 'number'),
+								  'Unit' => array('X' => null,
+												  'Y' => null)),
+							$data->getDataDescription());
+	}
 }
