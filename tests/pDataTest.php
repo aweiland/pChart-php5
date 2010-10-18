@@ -24,19 +24,19 @@ class pDataTest extends PHPUnit_Framework_TestCase {
 		
 		$data->addPoint(1);
 
-		$this->assertEquals(array(0 => array('Serie1' => 1,
+		$this->assertEquals(array(0 => array('Series1' => 1,
 											 'Name' => 0)),
 							$data->getData());
 
 		$data->addPoint(array(2, 3, 4));
 
-		$this->assertEquals(array(0 => array('Serie1' => 1,
+		$this->assertEquals(array(0 => array('Series1' => 1,
 											 'Name' => 0),
-								  1 => array('Serie1' => 2,
+								  1 => array('Series1' => 2,
 											 'Name' => 1),
-								  2 => array('Serie1' => 3,
+								  2 => array('Series1' => 3,
 											 'Name' => 2),
-								  3 => array('Serie1' => 4,
+								  3 => array('Series1' => 4,
 											 'Name' => 3)),
 							$data->getData());
 	}
