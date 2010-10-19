@@ -21,7 +21,11 @@ The goal of this project is:
  
 ## Status
 
-Currently assume this version is broken and buggy.
+The main body of the code now has around 50% unit test coverage, and
+all the examples appear to be working. If you're starting a new
+project, it's probably reasonable to use this distribution in
+preference to the Sourceforge distribution, since any bugs in this
+distribution should hopefully be fixed on a reasonable timescale.
 
 ## Issues
 
