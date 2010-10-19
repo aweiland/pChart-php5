@@ -1132,7 +1132,9 @@ class pChart {
 	}
 	
 	/**
-	 * Compute and draw the scale 
+	 * Compute and draw the scale
+	 *
+	 * @todo What is the method name a typo for? Threshold?
 	 */
 	function drawTreshold($Value, $R, $G, $B, $ShowLabel = FALSE, $ShowOnRight = FALSE, $TickWidth = 4, $FreeText = NULL) {
 		if ($R < 0) {
@@ -2860,7 +2862,14 @@ class pChart {
 				$this->drawLine ( $aBotPlots [$Key] [$j], $aBotPlots [$Key] [$j + 1], $aBotPlots [$Key] [$j + 2], $aBotPlots [$Key] [$j + 3], $this->Palette [$Key] ["R"] + $En, $this->Palette [$Key] ["G"] + $En, $this->Palette [$Key] ["B"] + $En );
 		}
 		
-		/* Draw pie layers */
+		$this->drawPieGraphLayers($iValues, $TopPlots, $EnhanceColors,
+								  $SpliceHeight);
+		
+		$this->drawPieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors,
+									   $aTopPlots);
+	}
+
+	private function drawPieGraphLayers($iValues, $TopPlots, $EnhanceColors, $SpliceHeight) {
 		if ($EnhanceColors) {
 			$ColorRatio = 30 / $SpliceHeight;
 		} else {
@@ -2892,8 +2901,6 @@ class pChart {
 				$this->drawAntialiasPixel ( $Plots [$Index - 4], $Plots [$Index - 3], $this->Palette [$Key] ["R"] + $ColorFactor, $this->Palette [$Key] ["G"] + $ColorFactor, $this->Palette [$Key] ["B"] + $ColorFactor );
 			}
 		}
-		
-		$this->drawpieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors, $aTopPlots);
 	}
 
 	private function drawPieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors, $aTopPlots) {
@@ -3615,7 +3622,7 @@ class pChart {
 	/**
 	 * Private functions for internal processing 
 	 */
-	function drawAntialiasPixel($X, $Y, $R, $G, $B, $Alpha = 100, $NoFallBack = FALSE) {
+	private function drawAntialiasPixel($X, $Y, $R, $G, $B, $Alpha = 100, $NoFallBack = FALSE) {
 		/* Process shadows */
 		if ($this->ShadowActive && ! $NoFallBack) {
 			$this->drawAntialiasPixel ( $X + $this->ShadowXDistance, $Y + $this->ShadowYDistance, $this->ShadowRColor, $this->ShadowGColor, $this->ShadowBColor, $this->ShadowAlpha, TRUE );
@@ -3684,7 +3691,7 @@ class pChart {
 	/**
 	 * Validate data contained in the description array 
 	 */
-	function validateDataDescription($FunctionName, &$DataDescription, $DescriptionRequired = TRUE) {
+	private function validateDataDescription($FunctionName, &$DataDescription, $DescriptionRequired = TRUE) {
 		if (! isset ( $DataDescription ["Position"] )) {
 			$this->Errors [] = "[Warning] " . $FunctionName . " - Y Labels are not set.";
 			$DataDescription ["Position"] = "Name";
@@ -3711,7 +3718,7 @@ class pChart {
 	/**
 	 * Validate data contained in the data array 
 	 */
-	function validateData($FunctionName, &$Data) {
+	private function validateData($FunctionName, &$Data) {
 		$DataSummary = array ();
 		
 		foreach ( $Data as $key => $Values ) {
