@@ -2847,7 +2847,17 @@ class pChart {
 			$Angle = $iAngle + $SpliceDistanceRatio;
 		}
 		
-		/* Draw Bottom polygons */
+		$this->drawPieGraphBottomPolygons($iValues, $BotPlots,
+										  $EnhanceColors, $aBotPlots);
+		
+		$this->drawPieGraphLayers($iValues, $TopPlots, $EnhanceColors,
+								  $SpliceHeight);
+		
+		$this->drawPieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors,
+									   $aTopPlots);
+	}
+
+	private function drawPieGraphBottomPolygons(array $iValues, array $BotPlots, $EnhanceColors, array $aBotPlots) {
 		foreach ( $iValues as $Key => $Value ) {
 			$C_GraphLo = $this->AllocateColor ( $this->Picture, $this->Palette [$Key] ["R"], $this->Palette [$Key] ["G"], $this->Palette [$Key] ["B"], - 20 );
 			imagefilledpolygon ( $this->Picture, $BotPlots [$Key], (count ( $BotPlots [$Key] ) + 1) / 2, $C_GraphLo );
@@ -2861,14 +2871,8 @@ class pChart {
 			for($j = 0; $j <= count ( $aBotPlots [$Key] ) - 4; $j = $j + 2)
 				$this->drawLine ( $aBotPlots [$Key] [$j], $aBotPlots [$Key] [$j + 1], $aBotPlots [$Key] [$j + 2], $aBotPlots [$Key] [$j + 3], $this->Palette [$Key] ["R"] + $En, $this->Palette [$Key] ["G"] + $En, $this->Palette [$Key] ["B"] + $En );
 		}
-		
-		$this->drawPieGraphLayers($iValues, $TopPlots, $EnhanceColors,
-								  $SpliceHeight);
-		
-		$this->drawPieGraphTopPolygons($iValues, $TopPlots, $EnhanceColors,
-									   $aTopPlots);
 	}
-
+	
 	private function drawPieGraphLayers($iValues, $TopPlots, $EnhanceColors, $SpliceHeight) {
 		if ($EnhanceColors) {
 			$ColorRatio = 30 / $SpliceHeight;
